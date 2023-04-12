@@ -59,7 +59,8 @@ export default function SuperAdminPage() {
         </div>
 
         <div className="p-4 ">
-          <DynamicForm access={userData?.access} customerName={customerName} />
+          <DynamicForm access="admin" customerName={customerName} />
+          {/* <DynamicForm access={userData?.access} customerName={customerName} /> */}
         </div>
       </div>
     </div>

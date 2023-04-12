@@ -3,6 +3,7 @@
 'use client';
 
 import validator from '@rjsf/validator-ajv8';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Form from '@rjsf/core';
 import { useEffect, useMemo, useState } from 'react';
@@ -246,17 +247,25 @@ export default function DynamicForm({
   }
 
   return (
-    <Form
-      schema={showQueriesFieldFromUserAccessLevel(access)}
-      formData={{ ...formData, customer: customerName }}
-      uiSchema={determineSchemaFromUserAccessLevel(access)}
-      validator={validator}
-      onSubmit={({ formData }) => handleSubmit(formData)}
-      templates={{
-        ...templates,
-      }}
-      onError={(e) => console.log(e)}
-      customValidate={customValidate}
-    />
+    <AnimatePresence initial={false} exitBeforeEnter>
+      <motion.div
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <Form
+          schema={showQueriesFieldFromUserAccessLevel(access)}
+          formData={{ ...formData, customer: customerName }}
+          uiSchema={determineSchemaFromUserAccessLevel(access)}
+          validator={validator}
+          onSubmit={({ formData }) => handleSubmit(formData)}
+          templates={{
+            ...templates,
+          }}
+          onError={(e) => console.log(e)}
+          customValidate={customValidate}
+        />
+      </motion.div>
+    </AnimatePresence>
   );
 }

@@ -2,6 +2,7 @@
 
 import { useQuery } from '@tanstack/react-query';
 import { useRouter, useParams } from 'next/navigation';
+import { useEffect } from 'react';
 import { TOUCHSTREAM_API_URL } from '../../../../data/constants';
 import DynamicForm from '../../admin/DynamicForm';
 import getAccessTokenFromCookies from '../../../../data/getAccessTokenFromCookies';
@@ -14,10 +15,13 @@ export default function SuperAdminPage() {
 
   const accessToken = getAccessTokenFromCookies() as string;
 
-  if (!accessToken) {
-    // if no token then redirect to login page
-    router.push('/login');
-  }
+  useEffect(() => {
+    if (!accessToken) {
+      // if no token then redirect to login page
+      // TODO: replace this with the login url of core product
+      router.push('/login');
+    }
+  }, [accessToken, router]);
 
   const {
     data: userData,

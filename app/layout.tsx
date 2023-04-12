@@ -5,7 +5,7 @@ import '../styles/globals.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Inter } from 'next/font/google';
 import Script from 'next/script';
-import { Metadata } from 'next';
+// import { Metadata } from 'next';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import config from '../package.json';
